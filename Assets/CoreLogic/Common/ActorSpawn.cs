@@ -131,7 +131,7 @@ namespace CoreLogic.Common
 
                         foreach (var component in sample.GetComponents<Component>())
                         {
-                            if (!component || component is Transform or IActor) continue;
+                            if (!component || component is Transform or Actor) continue;
                             switch (spawnSettings.copyComponentsOfType)
                             {
                                 case ComponentsOfType.OnlyAbilities when !(component is IAbility):
@@ -171,7 +171,7 @@ namespace CoreLogic.Common
                     {
                         foreach (var component in tempObj.GetComponents<Component>())
                         {
-                            if (component is Transform || component is IActor) continue;
+                            if (component is Transform || component is Actor) continue;
                             Object.Destroy(component);
                         }
                     }
@@ -185,8 +185,8 @@ namespace CoreLogic.Common
                 }
                 else if (actors.Length == 1)
                 {
-                    actors.First().Spawner = spawner;
-                    actors.First().Owner = owner ? owner : spawner ? spawner : actors.First();
+                    actors.First().spawner = spawner;
+                    actors.First().owner = owner ? owner : spawner ? spawner : actors.First();
                 }
 
                 if (spawnSettings.spawnPosition == SpawnPosition.UseSpawnPoints && spawnSettings.skipBusySpawnPoints)

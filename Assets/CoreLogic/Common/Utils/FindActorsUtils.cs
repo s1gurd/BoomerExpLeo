@@ -26,7 +26,7 @@ namespace CoreLogic.Common.Utils
                     if(!tag.Equals(String.Empty)) GameObject.FindGameObjectsWithTag(tag).ForEach(o => targets.Add(o.transform));
                     break;
                 case TargetType.Spawner:
-                    var t = source.GetComponent<Actor>()?.Spawner;
+                    var t = source.GetComponent<Actor>()?.spawner;
                     if (t != null)
                     {
                         targets.Add(t.gameObject.transform);

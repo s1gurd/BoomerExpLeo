@@ -1,29 +1,54 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using AleVerDes.LeoEcsLiteZoo;
+using CoreLogic.Graph;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace CoreLogic.Common
 {
-    public class Actor : MonoBehaviour, IActor
+    public class Actor : MonoBehaviour
     {
-        public int? Entity { get; private set; }
-        public Actor Spawner { get; set; }
-        public Actor Owner { get; set; }
+        [HideIf("@graphInstances.Count != 0")]public List<ComponentNodeGraph> _graphs;
+
+        [HideIf("@graphInstances.Count == 0")]public List<ComponentNodeGraph> graphInstances;
+        
+        [HideInInspector]public int? entity;
+        [HideInInspector]public Actor spawner;
+        [HideInInspector]public Actor owner;
 
         private bool _converted;
+        
 
         private void Start()
         {
-            Entity = ConvertActor();
-            //LinkUnityComponents(Entity);
+            entity = ConvertActor();
+            graphInstances = RuntimeGraphs(_graphs);
+        }
+
+        private List<ComponentNodeGraph> RuntimeGraphs(List<ComponentNodeGraph> sourceGraphs)
+        {
+            if (sourceGraphs is null) return null;
+            var output = new List<ComponentNodeGraph>();
+            foreach (var graph in sourceGraphs)
+            {
+                if (graph.Copy() is ComponentNodeGraph instance)
+                {
+                    instance.actor = this;
+                    instance.gameObject = gameObject;
+                    output.Add(instance);
+                }
+            }
+
+            return output;
         }
 
         private int? ConvertActor()
         {
             if (_converted)
             {
-                return Entity;
+                return this.entity;
             }
 
             var components = GetComponents<IAbility>();
