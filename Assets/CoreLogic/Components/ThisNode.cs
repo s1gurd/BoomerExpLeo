@@ -5,10 +5,10 @@ using XNode;
 
 namespace CoreLogic.Components
 {
-    [CreateNodeMenu("This")][NodeWidth(140)]
+    [CreateNodeMenu("This")][NodeWidth(110)]
     public class ThisNode : ComponentNode
     {
-        [Output(ShowBackingValue.Never)][LabelWidth(1)]public GameObject gameObject;
+        [Output][LabelWidth(1)]public GameObject gameObject;
         
         private ComponentNodeGraph _compGraph;
         public override object GetValue(NodePort port) {

@@ -24,7 +24,7 @@ namespace CoreLogic.Graph
             };
         }
 
-        private ListConnection()
+        public ListConnection()
         {
             value = new List<T>();
         }

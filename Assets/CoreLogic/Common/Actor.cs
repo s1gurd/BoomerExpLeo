@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AleVerDes.LeoEcsLiteZoo;
+using CoreLogic.Components;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -25,6 +26,19 @@ namespace CoreLogic.Common
         {
             entity = ConvertActor();
             graphInstances = RuntimeGraphs(_graphs);
+            PerformStartups(graphInstances);
+        }
+
+        private void PerformStartups(List<ComponentNodeGraph> componentNodeGraphs)
+        {
+            foreach (var instance in componentNodeGraphs)
+            {
+                foreach (var node in instance.nodes)
+                {
+                    if (node is StartupNode startup) startup.Startup();
+                }
+            }
+            
         }
 
         private List<ComponentNodeGraph> RuntimeGraphs(List<ComponentNodeGraph> sourceGraphs)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CoreLogic.Graph;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = System.Random;
@@ -68,6 +69,8 @@ namespace CoreLogic.Common
 
         [ShowIf("@copyComponentsFromSamples.Count > 0")]
         public bool deleteExistingComponents;
+
+        public List<ComponentNodeGraph> applyAdditionalGraphs;
         
         public bool destroyAbilityAfterSpawn;
         

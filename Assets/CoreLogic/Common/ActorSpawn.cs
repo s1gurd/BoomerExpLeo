@@ -13,6 +13,10 @@ namespace CoreLogic.Common
     {
         public static List<GameObject> Spawn(SpawnSettings spawnSettings, Actor spawner = null, Actor owner = null)
         {
+            return Spawn(spawnSettings, out _, spawner, owner);
+        }
+        public static List<GameObject> Spawn(SpawnSettings spawnSettings, out List<Actor> outActors, Actor spawner = null, Actor owner = null)
+        {
             Quaternion tempRot = Quaternion.identity;
             Vector3 tempPos = default;
 
@@ -20,6 +24,8 @@ namespace CoreLogic.Common
 
             List<Component> sampledComponents = new List<Component>();
             List<GameObject> spawnedObjects = new List<GameObject>();
+
+            outActors = new List<Actor>();
 
             spawnSettings.random = new Random(spawnSettings.randomSeed);
 
@@ -181,10 +187,11 @@ namespace CoreLogic.Common
 
                 if (actors.Length > 1)
                 {
-                    Debug.LogError("[ACTOR SPAWNER] Only one IActor Component for Actor allowed!");
+                    Debug.LogError("[ACTOR SPAWNER] Only one Actor Component for Actor allowed!");
                 }
                 else if (actors.Length == 1)
                 {
+                    outActors.Add(actors.First());
                     actors.First().spawner = spawner;
                     actors.First().owner = owner ? owner : spawner ? spawner : actors.First();
                 }
@@ -197,7 +204,7 @@ namespace CoreLogic.Common
 
                 spawnedObjects.Add(tempObj);
             }
-
+            
             return spawnedObjects;
         }
 

@@ -4,9 +4,9 @@ namespace CoreLogic.Common
 {
     public interface IAbility : IConvertToEntity
     {
-        bool Execute(Actor other = null)
+        void Execute(Actor other = null)
         {
-            return true;
+            
         }
     }
 }

@@ -9,7 +9,6 @@ using XNode;
 namespace CoreLogic.Graph
 {
     [NodeWidth(300)]
-    [NodeTint("#bbbbbb")]
     public abstract class ComponentNode : Node
     {
         public List<T> GetInputListValue<T>(string fieldName, T fallback = default(T))
@@ -17,7 +16,7 @@ namespace CoreLogic.Graph
             return GetInputValue<ListConnection<T>>(fieldName)?.value;
         }
 
-        public virtual bool Execute(Actor target = null)
+        public virtual void Execute(Actor target = null)
         {
             var fields = this.GetType().GetFields()
                 .Where(f => f.GetCustomAttributes(typeof(InputAttribute), true).Length > 0);
@@ -30,8 +29,6 @@ namespace CoreLogic.Graph
                     field.SetValue(this, temp);
                 }
             }
-
-            return true;
         }
     }
 }
