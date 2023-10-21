@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("Shuffle List")][NodeWidth(140)]
     public class ShuffleListNode : ComponentNode

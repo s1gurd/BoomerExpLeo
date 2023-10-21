@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("This")][NodeWidth(110)]
     public class ThisNode : ComponentNode

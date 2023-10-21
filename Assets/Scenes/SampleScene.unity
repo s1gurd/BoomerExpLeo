@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 448494078}
   - component: {fileID: 448494080}
-  - component: {fileID: 448494079}
   m_Layer: 0
   m_Name: PlayerSpawn
   m_TagString: Untagged
@@ -156,42 +155,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &448494079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448494075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd73b8661774728a3889aca22f9896c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 1462356313355855220, guid: 55e191be8334544809ec95d304f8c689, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    applyAdditionalGraphs: []
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
 --- !u!114 &448494080
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,9 +1,8 @@
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("Select Multiple Prefabs")]
     public class GameObjectListNode : ComponentNode

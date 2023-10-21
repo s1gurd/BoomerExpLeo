@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("Select Prefab")][LabelWidth(1)][NodeWidth(120)]
     public class GameObjectNode : ComponentNode

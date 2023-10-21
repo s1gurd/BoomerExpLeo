@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Components;
 using CoreLogic.Graph;
+using CoreLogic.Nodes;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

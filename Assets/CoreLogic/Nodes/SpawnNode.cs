@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using CoreLogic.Common;
 using CoreLogic.Graph;
 using Leopotam.EcsLite;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [Serializable][NodeWidth(400)][LabelWidth(180)][CreateNodeMenu("Spawn Objects")]
     public class SpawnNode : ExecComponentNode, IAbility

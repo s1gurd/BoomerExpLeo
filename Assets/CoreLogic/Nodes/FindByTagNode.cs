@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("Gameobjects by Tag")][NodeWidth(200)]
     public class FindByTagNode : ComponentNode

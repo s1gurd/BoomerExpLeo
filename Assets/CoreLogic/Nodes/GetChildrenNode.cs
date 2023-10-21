@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("Get Children")][NodeWidth(140)]
     public class GetChildrenNode : ComponentNode

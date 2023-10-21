@@ -1,11 +1,7 @@
-
-using System;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
-using UnityEngine;
-using XNode;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("Startup")][NodeWidth(115)]
     public class StartupNode : ComponentNode
