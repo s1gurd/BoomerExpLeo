@@ -189,6 +189,7 @@ MonoBehaviour:
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    applyAdditionalGraphs: []
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
 --- !u!114 &448494080
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba8111afdce4e5d868331689754d171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _graphs:
+  graphs:
   - {fileID: 11400000, guid: 24d62043c65654a11bc81fb41e0796cb, type: 2}
   graphInstances: []
   spawner: {fileID: 0}

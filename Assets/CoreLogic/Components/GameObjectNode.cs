@@ -15,7 +15,8 @@ namespace CoreLogic.Components
         {
             if (port.fieldName == nameof(prefab))
                 return new ListConnection<GameObject>(prefab);
-            return null;
+            
+            return base.GetValue(port);
         }
         
         private void OnValidate()

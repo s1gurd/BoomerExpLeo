@@ -18,13 +18,5 @@ namespace CoreLogic.Components
         {
             this.TriggerOutputs(nameof(outputTrigger));
         }
-        
-        public override object GetValue(NodePort port)
-        {
-            if (port.fieldName == nameof(outputTrigger))
-                return outputTrigger;
-            
-            return null;
-        }
     }
 }

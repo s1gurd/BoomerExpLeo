@@ -27,7 +27,7 @@ namespace CoreLogic.Components
 
             }
 
-            return null;
+            return base.GetValue(port);
         }
         
         public static IEnumerable Tags()

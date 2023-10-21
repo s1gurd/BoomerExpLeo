@@ -30,5 +30,13 @@ namespace CoreLogic.Graph
                 }
             }
         }
+
+        public override object GetValue(NodePort port)
+        {
+            var field = this.GetType()
+                .GetFields().FirstOrDefault(f => f.GetCustomAttributes(typeof(OutputAttribute), true).Length > 0 
+                                                 && f.Name.EndsWith(port.fieldName));
+            return field?.GetValue(this);
+        }
     }
 }

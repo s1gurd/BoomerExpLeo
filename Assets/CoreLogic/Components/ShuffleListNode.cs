@@ -18,7 +18,7 @@ namespace CoreLogic.Components
             if (port.fieldName == nameof(output))
                 return new ListConnection<object>(input.value.OrderBy(_ => Random.value));
             
-            return null;
+            return base.GetValue(port);
         }
     }
 }

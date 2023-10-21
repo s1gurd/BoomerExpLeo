@@ -12,15 +12,17 @@ namespace CoreLogic.Components
         
         private ComponentNodeGraph _compGraph;
         public override object GetValue(NodePort port) {
-            _compGraph ??= graph as ComponentNodeGraph;
-            
-            if (_compGraph is not null) 
-                gameObject = _compGraph.actor != null ? _compGraph.actor.gameObject : null;
-            
+
             if (port.fieldName == nameof(gameObject))
-                return new ListConnection<GameObject>(gameObject);
+            {
+                _compGraph ??= graph as ComponentNodeGraph;
             
-            return null;
+                if (_compGraph is not null) 
+                    gameObject = _compGraph.actor != null ? _compGraph.actor.gameObject : null;
+                return new ListConnection<GameObject>(gameObject);
+            }
+            
+            return base.GetValue(port);
         }
     }
 }

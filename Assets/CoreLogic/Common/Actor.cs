@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Components;
 using CoreLogic.Graph;
@@ -11,21 +9,18 @@ namespace CoreLogic.Common
 {
     public class Actor : MonoBehaviour
     {
-        [HideIf("@graphInstances.Count != 0")]public List<ComponentNodeGraph> _graphs;
+        [HideIf("@graphInstances.Count != 0")]public List<ComponentNodeGraph> graphs;
 
         [HideIf("@graphInstances.Count == 0")]public List<ComponentNodeGraph> graphInstances;
         
-        [HideInInspector]public int? entity;
+        public int? Entity;
         [HideInInspector]public Actor spawner;
         [HideInInspector]public Actor owner;
-
-        private bool _converted;
         
-
         private void Start()
         {
-            entity = ConvertActor();
-            graphInstances = RuntimeGraphs(_graphs);
+            graphInstances = CreateRuntimeGraphs(graphs);
+            Entity = ConvertActor();
             PerformStartups(graphInstances);
         }
 
@@ -38,10 +33,9 @@ namespace CoreLogic.Common
                     if (node is StartupNode startup) startup.Startup();
                 }
             }
-            
         }
 
-        private List<ComponentNodeGraph> RuntimeGraphs(List<ComponentNodeGraph> sourceGraphs)
+        private List<ComponentNodeGraph> CreateRuntimeGraphs(List<ComponentNodeGraph> sourceGraphs)
         {
             if (sourceGraphs is null) return null;
             var output = new List<ComponentNodeGraph>();
@@ -60,25 +54,32 @@ namespace CoreLogic.Common
 
         private int? ConvertActor()
         {
-            if (_converted)
+            if (Entity != null)
             {
-                return this.entity;
+                return Entity;
             }
 
-            var components = GetComponents<IAbility>();
+            var world = EcsStartup.DefaultConversionWorld;
 
-            var entity = EcsStartup.DefaultConversionWorld.NewEntity();
-
+            var newEntity = world.NewEntity();
+            
+            var components = GetComponents<IAbility>(); 
             foreach (var component in components)
             {
-                component.ConvertToEntity(EcsStartup.DefaultConversionWorld, entity);
+                component.ConvertToEntity(world, newEntity);
+            }
+
+            foreach (var graph in graphInstances)
+            {
+                foreach (var node in graph.nodes)
+                {
+                    if (node is IAbility ability) ability.ConvertToEntity(world, newEntity);
+                }
             }
             
-            LinkUnityComponents(entity);
+            LinkUnityComponents(newEntity);
 
-            _converted = true;
-
-            return entity;
+            return newEntity;
         }
 
         private void LinkUnityComponents(int entity)

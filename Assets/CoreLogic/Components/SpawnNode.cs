@@ -58,13 +58,5 @@ namespace CoreLogic.Components
             
             TriggerOutputs();
         }
-        
-        public override object GetValue(NodePort port)
-        {
-            if (port.fieldName == nameof(spawnedObjects))
-                return spawnedObjects;
-            
-            return null;
-        }
     }
 }
