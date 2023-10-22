@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreLogic.Common.DataTypes;
 using CoreLogic.Common.Utils;
 using UnityEngine;
 using Object = UnityEngine.Object;

@@ -1,4 +1,4 @@
-namespace CoreLogic.Common
+namespace CoreLogic.Common.DataTypes
 {
     public enum ComponentsOfType
     {

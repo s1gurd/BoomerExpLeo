@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AleVerDes.LeoEcsLiteZoo;
+using CoreLogic.Common.Utils;
 using CoreLogic.Components;
 using CoreLogic.Graph;
 using CoreLogic.Nodes;
@@ -106,49 +107,52 @@ namespace CoreLogic.Common
         {
             var ecsWorld = EcsStartup.DefaultConversionWorld;
 
-            ecsWorld.GetPool<ActorRef>().Add(entity) = new ActorRef()
+            ecsWorld.AddComponent(entity, new ActorRef
             {
-                Value = this
-            };
+                value = this
+            });
             
-            ecsWorld.GetPool<TransformRef>().Add(entity) = new TransformRef()
+            ecsWorld.AddComponent(entity, new TransformRef
             {
                 Value = transform
-            };
+            });
 
             if (transform is RectTransform rectTransform)
             {
-                ecsWorld.GetPool<RectTransformRef>().Add(entity) = new RectTransformRef()
+                ecsWorld.AddComponent(entity, new RectTransformRef
                 {
                     Value = rectTransform
-                };
+                });
             }
 
-            ecsWorld.GetPool<GameObjectRef>().Add(entity) = new GameObjectRef()
+            ecsWorld.AddComponent(entity, new GameObjectRef
             {
                 Value = gameObject
-            };
+            });
             
             if (TryGetComponent<Rigidbody>(out var rb))
             {
-                ecsWorld.GetPool<RigidbodyRef>().Add(entity) = new RigidbodyRef()
+                ecsWorld.AddComponent(entity, new RigidbodyRef
                 {
                     Value = rb
-                };
+                });
             }
             
             if (TryGetComponent<Rigidbody2D>(out var rb2d))
             {
-                ecsWorld.GetPool<Rigidbody2DRef>().Add(entity) = new Rigidbody2DRef()
+                ecsWorld.AddComponent(entity, new Rigidbody2DRef
                 {
                     Value = rb2d
-                };
+                });
+            }
+
+            if (TryGetComponent<CharacterController>(out var cc))
+            {
+                ecsWorld.AddComponent(entity, new CharacterRef
+                {
+                    Value = cc
+                });
             }
         }
-    }
-
-    public struct ActorRef
-    {
-        public Actor Value;
     }
 }

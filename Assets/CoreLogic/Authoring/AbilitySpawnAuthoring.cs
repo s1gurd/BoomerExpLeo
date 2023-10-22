@@ -1,4 +1,5 @@
 using CoreLogic.Common;
+using CoreLogic.Common.DataTypes;
 using CoreLogic.Common.Utils;
 using CoreLogic.Components;
 using Leopotam.EcsLite;

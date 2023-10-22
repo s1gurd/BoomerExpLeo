@@ -12,7 +12,7 @@ namespace CoreLogic.Nodes
     public class FindByTagNode : ComponentNode
     {
         [ValueDropdown(nameof(Tags))][LabelWidth(1)]
-        public string tag;
+        [SerializeField] private string tag;
         [Output] [LabelWidth(1)] public ListConnection<GameObject> output;
         
         public override object GetValue(NodePort port)

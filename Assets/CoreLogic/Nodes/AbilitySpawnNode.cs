@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CoreLogic.Common;
+using CoreLogic.Common.DataTypes;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,12 +16,12 @@ namespace CoreLogic.Nodes
         [Input(ShowBackingValue.Never,
             connectionType = ConnectionType.Override)]
         public ListConnection<GameObject> spawnPoints;
-        public FillMode fillSpawnPoints;
+        [SerializeField] private FillMode fillSpawnPoints;
         [ShowIf(nameof(fillSpawnPoints), FillMode.PlaceEachObjectXTimes)]
-        public int x;
-        public bool skipBusySpawnPoints;
-        public RotationOfSpawns rotationOfSpawns;
-        public List<ComponentNodeGraph> applyAdditionalGraphs;
+        [SerializeField] private int x;
+        [SerializeField] private bool skipBusySpawnPoints;
+        [SerializeField] private RotationOfSpawns rotationOfSpawns;
+        [SerializeField] private List<ComponentNodeGraph> applyAdditionalGraphs;
         [Input(connectionType = ConnectionType.Override)]
         public ListConnection<GameObject> copyComponentsFrom;
         [Output()] public ListConnection<GameObject> spawnedObjects;

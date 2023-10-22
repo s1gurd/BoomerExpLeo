@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = System.Random;
 
-namespace CoreLogic.Common
+namespace CoreLogic.Common.DataTypes
 {
     [Serializable]
     public struct SpawnSettings

@@ -9,7 +9,8 @@ namespace CoreLogic.Nodes
     [CreateNodeMenu("This")][NodeWidth(110)]
     public class ThisNode : ComponentNode
     {
-        [Output][LabelWidth(1)]public GameObject gameObject;
+        [Output][LabelWidth(1)]
+        public GameObject gameObject;
         
         private ComponentNodeGraph _compGraph;
         public override object GetValue(NodePort port) {

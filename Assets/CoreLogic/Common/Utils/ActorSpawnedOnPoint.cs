@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CoreLogic.Common
+namespace CoreLogic.Common.Utils
 {
     public class ActorSpawnedOnPoint:MonoBehaviour
     {

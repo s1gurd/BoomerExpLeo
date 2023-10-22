@@ -1,13 +1,15 @@
 using System;
 using CoreLogic.Common;
+using CoreLogic.Common.DataTypes;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
+using UnityEngine;
 using XNode;
 
 namespace CoreLogic.Nodes
 {
     [Serializable]
-    [NodeWidth(120)]
+    [NodeWidth(140)]
     [LabelWidth(1)]
     [CreateNodeMenu("Init Input Context")]
     public class InitInputContextNode : ExecComponentNode
@@ -16,8 +18,8 @@ namespace CoreLogic.Nodes
         public InputContext inputContext;
         public override void Execute(Actor target = null)
         {
-            base.Execute(target);
-
+            RefreshFields();
+            
             inputContext.actions.FindActionMap(inputContext.actionMap).Enable();
             
             TriggerOutputs();

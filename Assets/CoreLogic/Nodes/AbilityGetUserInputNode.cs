@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CoreLogic.Common;
+using CoreLogic.Common.DataTypes;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace CoreLogic.Nodes
     [CreateNodeMenu("User Input")]//[NodeWidth(140)]
     public class AbilityGetUserInputNode : ComponentNode
     {
-        public InputActionAsset actionsAsset;
+        [SerializeField] private InputActionAsset actionsAsset;
         [ValueDropdown(nameof(ActionMaps))]public string actionMap;
 
         [Output(ShowBackingValue.Never)] 
@@ -27,7 +28,7 @@ namespace CoreLogic.Nodes
         {
             if (port.fieldName.Equals(nameof(inputContext), StringComparison.Ordinal))
             {
-                return new InputContext()
+                return new InputContext
                 {
                     actions = actionsAsset,
                     actionMap = actionMap

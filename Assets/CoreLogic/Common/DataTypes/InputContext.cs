@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.InputSystem;
 
-namespace CoreLogic.Common
+namespace CoreLogic.Common.DataTypes
 {
     [Serializable]
     public class InputContext

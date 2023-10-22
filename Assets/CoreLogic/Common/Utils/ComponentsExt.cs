@@ -4,6 +4,10 @@ namespace CoreLogic.Common.Utils
 {
     public static class ComponentsExt
     {
+        public static bool HasComponent<T>(this EcsWorld world, int entity) where T : struct
+        {
+            return world.GetPool<T>().Has(entity);
+        }
         
         public static ref T GetComponent<T>(this EcsWorld world, int entity) where T : struct
         {
