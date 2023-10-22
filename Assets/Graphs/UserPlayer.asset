@@ -77,7 +77,10 @@ MonoBehaviour:
       _node: {fileID: -7061075007637913700}
       _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: inputActions 3
+        node: {fileID: -1103920811716569396}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
@@ -114,8 +117,8 @@ MonoBehaviour:
   jumpAction: 
   friction: 6
   gravity: 100
-  jumpForce: 8
-  autoBunnyHop: 1
+  jumpForce: 13
+  autoBunnyHop: 0
   airControl: 0.3
   groundSettings:
     maxSpeed: 0
@@ -204,7 +207,7 @@ MonoBehaviour:
   m_Name: User Input
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -504, y: -152}
+  position: {x: -504, y: -200}
   folded: 0
   ports:
     keys:
@@ -212,6 +215,8 @@ MonoBehaviour:
     - inputActions 0
     - inputActions 1
     - inputContext
+    - inputActions 2
+    - inputActions 3
     values:
     - _fieldName: inputActions
       _node: {fileID: -1103920811716569396}
@@ -259,6 +264,27 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: inputActions 2
+      _node: {fileID: -1103920811716569396}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inputActions 3
+      _node: {fileID: -1103920811716569396}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: jumpAction
+        node: {fileID: -7061075007637913700}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
   actionsAsset: {fileID: -944628639613478452, guid: d5ed55f047df943c1907f718553d86d7, type: 3}
   actionMap: Gameplay
   inputContext:
@@ -267,6 +293,8 @@ MonoBehaviour:
   inputActions:
   - Move
   - Look
+  - LookHorizontal
+  - Jump
 --- !u!114 &-708658109783540850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +401,7 @@ MonoBehaviour:
   m_Name: Startup
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: -232}
+  position: {x: -328, y: -280}
   folded: 0
   ports:
     keys:

@@ -42,39 +42,34 @@ namespace CoreLogic.Systems
                 var character = World.GetComponent<CharacterRef>(entity).Value;
                 var transform = World.GetComponent<TransformRef>(entity).Value;
                 var input = movement.moveInput?.ReadValue<Vector2>();
-                Vector3 velocity = Vector3.zero;
 
                 QueueJump(ref movement, entity);
                 
                 if (character.isGrounded)
                 {
-                    GroundMove(ref movement, transform, character, ref velocity, input);
+                    GroundMove(ref movement, transform, character, input);
                 }
                 else
                 {
                     //AirMove();
-                    GroundMove(ref movement, transform, character, ref velocity, input);
+                    GroundMove(ref movement, transform, character, input);
                 }
-                character.Move(velocity * Time.fixedDeltaTime*5f);
+                character.Move(movement.velocity * Time.fixedDeltaTime);
             }
         }
 
         private void QueueJump(ref CharacterMovementComponent m, int entity)
         {
             var jumping = World.HasComponent<JumpPressedComponent>(entity);
-            
-            if (m.autoBunnyHop)
-            {
-                m.jumpQueued = jumping;
-                return;
-            }
+            if (jumping) World.RemoveComponent<JumpPressedComponent>(entity);
 
             if (jumping && !m.jumpQueued)
             {
                 m.jumpQueued = true;
+                return;
             }
 
-            if (jumping)
+            if (!jumping)
             {
                 m.jumpQueued = false;
             }
@@ -82,18 +77,17 @@ namespace CoreLogic.Systems
         
         private void GroundMove(ref CharacterMovementComponent m, 
             Transform transform, 
-            CharacterController character, 
-            ref Vector3 velocity, 
+            CharacterController character,
             Vector2? input)
         {
             // Do not apply friction if the player is queueing up the next jump
             if (!m.jumpQueued)
             {
-                ApplyFriction(ref m, character, ref velocity, 1.0f);
+                ApplyFriction(ref m, character, 1.0f);
             }
             else
             {
-                ApplyFriction(ref m, character, ref velocity, 0);
+                ApplyFriction(ref m, character, 0);
             }
 
             if (input != null)
@@ -128,26 +122,24 @@ namespace CoreLogic.Systems
                 var wishSpeed = wishDir.magnitude;
                 wishSpeed *= m.groundSettings.maxSpeed;
 
-                Accelerate(wishDir, wishSpeed, m.groundSettings.acceleration, ref velocity);
+                Accelerate(wishDir, wishSpeed, m.groundSettings.acceleration, ref m.velocity);
             }
-
-            // Reset the gravity velocity
-            velocity.y = -m.gravity * Time.deltaTime;
+            
+            m.velocity.y += -m.gravity * Time.fixedDeltaTime;
 
             if (m.jumpQueued)
             {
-                velocity.y = m.jumpForce;
+                m.velocity.y = m.jumpForce;
                 m.jumpQueued = false;
             }
         }
         
         private void ApplyFriction(ref CharacterMovementComponent m, 
-            CharacterController character, 
-            ref Vector3 velocity, 
+            CharacterController character,
             float t)
         {
             // Equivalent to VectorCopy();
-            var vec = velocity; 
+            var vec = m.velocity; 
             vec.y = 0;
             var speed = vec.magnitude;
             var drop = 0f;
@@ -156,7 +148,7 @@ namespace CoreLogic.Systems
             if (character.isGrounded)
             {
                 float control = speed < m.groundSettings.deceleration ? m.groundSettings.deceleration : speed;
-                drop = control * m.friction * Time.deltaTime * t;
+                drop = control * m.friction * Time.fixedDeltaTime * t;
             }
 
             float newSpeed = speed - drop;
@@ -171,9 +163,9 @@ namespace CoreLogic.Systems
                 newSpeed /= speed;
             }
 
-            velocity.x *= newSpeed;
+            m.velocity.x *= newSpeed;
             // playerVelocity.y *= newSpeed;
-            velocity.z *= newSpeed;
+            m.velocity.z *= newSpeed;
         }
         
         private void Accelerate(Vector3 targetDir, float targetSpeed, float accel, ref Vector3 velocity)
@@ -185,7 +177,7 @@ namespace CoreLogic.Systems
                 return;
             }
 
-            float accelSpeed = accel * Time.deltaTime * targetSpeed;
+            float accelSpeed = accel * Time.fixedDeltaTime * targetSpeed;
             if (accelSpeed > addSpeed)
             {
                 accelSpeed = addSpeed;

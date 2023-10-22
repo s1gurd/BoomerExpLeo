@@ -12,7 +12,6 @@ namespace CoreLogic.Components
         public float friction;
         public float gravity;
         public float jumpForce;
-        public bool autoBunnyHop;
         public bool jumpQueued;
         public float airControl;
         public MovementSettings groundSettings;
@@ -20,5 +19,6 @@ namespace CoreLogic.Components
         public MovementSettings strafeSettings;
         public AngleCompensate angleCompensation;
 
+        public Vector3 velocity;
     }
 }
