@@ -11,7 +11,6 @@ namespace CoreLogic
             systems
                 .Add(new TestSystem())
                 .Add(new SpawnSystem())
-                .Add(new CharacterMovementSystem())
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem ())
                 ;
@@ -23,6 +22,9 @@ namespace CoreLogic
 
         public void SetupFixedUpdateSystems(IEcsSystems systems)
         {
+            systems
+                .Add(new CharacterMovementSystem())
+                ;
         }
 
         public void SetupInjector(IEcsInjector injector)

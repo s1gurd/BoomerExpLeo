@@ -18,6 +18,7 @@ namespace CoreLogic.Components
         public MovementSettings groundSettings;
         public MovementSettings airSettings;
         public MovementSettings strafeSettings;
+        public AngleCompensate angleCompensation;
 
     }
 }

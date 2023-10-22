@@ -131,6 +131,7 @@ MonoBehaviour:
     deceleration: 0
   characterGameObject:
     value: []
+  angleCompensateMode: 1
 --- !u!114 &-4937837506045057476
 MonoBehaviour:
   m_ObjectHideFlags: 0

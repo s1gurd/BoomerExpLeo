@@ -37,6 +37,8 @@ namespace CoreLogic.Nodes
         [Input(ShowBackingValue.Never,
             connectionType = ConnectionType.Override)]
         public ListConnection<GameObject> characterGameObject;
+
+        [SerializeField][LabelWidth(120)]private AngleCompensate angleCompensateMode;
         
         private CharacterController _character;
         private InputAction _move;
@@ -82,7 +84,8 @@ namespace CoreLogic.Nodes
                 autoBunnyHop = autoBunnyHop,
                 groundSettings = groundSettings,
                 airSettings = airSettings,
-                strafeSettings = strafeSettings
+                strafeSettings = strafeSettings,
+                angleCompensation = angleCompensateMode
             });
         }
     }

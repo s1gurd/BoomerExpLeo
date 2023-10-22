@@ -1,5 +1,7 @@
+using System;
 using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Common;
+using CoreLogic.Common.DataTypes;
 using CoreLogic.Common.Utils;
 using CoreLogic.Components;
 using Leopotam.EcsLite;
@@ -10,7 +12,22 @@ namespace CoreLogic.Systems
 {
     public class CharacterMovementSystem : SystemBase
     {
+        public Camera CurrentCamera
+        {
+            get
+            {
+                if (_camera == null)
+                {
+                    _camera = Camera.main;
+                }
+
+                return _camera;
+            }
+        }
+        
         private EcsFilter _filter;
+
+        private Camera _camera;
 
         public override void Init(IEcsSystems systems)
         {
@@ -38,7 +55,7 @@ namespace CoreLogic.Systems
                     //AirMove();
                     GroundMove(ref movement, transform, character, ref velocity, input);
                 }
-                character.Move(velocity * Time.deltaTime * 10f);
+                character.Move(velocity * Time.fixedDeltaTime*5f);
             }
         }
 
@@ -82,6 +99,29 @@ namespace CoreLogic.Systems
             if (input != null)
             {
                 var wishDir = new Vector3(input.Value.x, 0, input.Value.y);
+                switch (m.angleCompensation)
+                {
+                    case AngleCompensate.CompensateCameraAngle:
+                        
+                        wishDir = CurrentCamera.transform.TransformDirection(wishDir);
+                        break;
+                    case AngleCompensate.RelativeToObjectForward:
+                        wishDir = transform.TransformDirection(wishDir);
+                        break;
+                    case AngleCompensate.RelativeToCameraView:
+                        var cameraTransform = CurrentCamera.transform;
+                        var forward = cameraTransform.position - transform.position;
+                        var right = cameraTransform.right;
+                        forward.y = 0f;
+                        right.y = 0f;
+                        forward.Normalize();
+                        right.Normalize();
+                        wishDir = forward * wishDir.z + right * wishDir.x;
+                        break;
+                    case AngleCompensate.DoNotCompensate:
+                    default:
+                        break;
+                }
                 wishDir = transform.TransformDirection(wishDir);
                 wishDir.Normalize();
 
