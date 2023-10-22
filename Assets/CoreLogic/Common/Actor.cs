@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Components;
@@ -67,14 +68,32 @@ namespace CoreLogic.Common
             var components = GetComponents<IAbility>(); 
             foreach (var component in components)
             {
-                component.ConvertToEntity(world, newEntity);
+                try
+                {
+                    component.ConvertToEntity(world, newEntity);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[Entity Conversion - Components] {gameObject.name} on Component {component.ToString()} caused an exception:\n{e.Message}\n{e.StackTrace}");
+                }
+                
             }
 
             foreach (var graph in graphInstances)
             {
                 foreach (var node in graph.nodes)
                 {
-                    if (node is IAbility ability) ability.ConvertToEntity(world, newEntity);
+                    if (node is IAbility ability)
+                    {
+                        try
+                        {
+                            ability.ConvertToEntity(world, newEntity);
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogError($"[Entity Conversion - Graph] {gameObject.name} in Graph {graph.name} in Node {node.name} caused an exception:\n{e.Message}\n{e.StackTrace}");
+                        }
+                    }
                 }
             }
             

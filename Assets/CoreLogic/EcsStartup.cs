@@ -8,7 +8,7 @@ namespace CoreLogic
 {
     public class EcsStartup : MonoBehaviour
     {
-        [SerializeField] private List<EcsInjectionContext> _injectionContexts;
+        [SerializeField] private List<EcsInjectionContext> injectionContexts;
 
         public static EcsWorld DefaultConversionWorld { get; set; }
         
@@ -23,7 +23,7 @@ namespace CoreLogic
             _ecsManager = new EcsManager();
             _ecsManager.SetWorld(_world);
         
-            foreach (var injectionContext in _injectionContexts)
+            foreach (var injectionContext in injectionContexts)
             {
                 injectionContext.InitInjector();
                 _ecsManager.AddInjector(injectionContext.GetInjector());   

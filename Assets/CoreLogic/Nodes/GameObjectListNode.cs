@@ -7,9 +7,12 @@ namespace CoreLogic.Nodes
     [CreateNodeMenu("Select Multiple Prefabs")]
     public class GameObjectListNode : ComponentNode
     {
-        [Output(ShowBackingValue.Always)] [AssetsOnly] [LabelWidth(1)]public ListConnection<GameObject> prefabs;
+        [Output(ShowBackingValue.Always)]
+        [AssetsOnly]
+        [LabelWidth(1)]
+        public ListConnection<GameObject> prefabs;
 
-        private void OnValidate()
+        public override void OnValidate()
         {
             var c = prefabs.value.Count;
             name = $"{c} prefab{(c > 1 ? 's' : string.Empty)}";

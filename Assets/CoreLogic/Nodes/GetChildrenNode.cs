@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
@@ -15,7 +16,7 @@ namespace CoreLogic.Nodes
         public override object GetValue(NodePort port)
         {
             input = GetInputValue<ListConnection<GameObject>>(nameof(input));
-            if (port.fieldName == nameof(output))
+            if (port.fieldName.Equals(nameof(output), StringComparison.Ordinal))
             {
                 var children = new List<GameObject>();
                 foreach (var obj in input)

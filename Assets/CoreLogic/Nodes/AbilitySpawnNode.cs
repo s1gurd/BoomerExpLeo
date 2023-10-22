@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using CoreLogic.Common;
 using CoreLogic.Graph;
-using Leopotam.EcsLite;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CoreLogic.Nodes
 {
     [Serializable][NodeWidth(400)][LabelWidth(180)][CreateNodeMenu("Spawn Objects")]
-    public class SpawnNode : ExecComponentNode, IAbility
+    public class AbilitySpawnNode : ExecComponentNode
     {
         [Input(connectionType = ConnectionType.Override)]
         public ListConnection<GameObject> objectsToSpawn;
@@ -26,11 +25,6 @@ namespace CoreLogic.Nodes
         public ListConnection<GameObject> copyComponentsFrom;
         [Output()] public ListConnection<GameObject> spawnedObjects;
         [Output()] public ListConnection<Actor> spawnedActors;
-
-        public void ConvertToEntity(EcsWorld ecsWorld, int entity)
-        {
-            
-        }
 
         public override void Execute(Actor target = null)
         {

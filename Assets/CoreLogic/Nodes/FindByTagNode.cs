@@ -17,7 +17,7 @@ namespace CoreLogic.Nodes
         
         public override object GetValue(NodePort port)
         {
-            if (port.fieldName == nameof(output))
+            if (port.fieldName.Equals(nameof(output), StringComparison.Ordinal))
             {
                 if (tag.Equals(String.Empty))
                     return null;

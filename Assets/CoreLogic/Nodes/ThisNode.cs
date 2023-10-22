@@ -1,3 +1,4 @@
+using System;
 using CoreLogic.Graph;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace CoreLogic.Nodes
         private ComponentNodeGraph _compGraph;
         public override object GetValue(NodePort port) {
 
-            if (port.fieldName == nameof(gameObject))
+            if (port.fieldName.Equals(nameof(gameObject), StringComparison.Ordinal))
             {
                 _compGraph ??= graph as ComponentNodeGraph;
             

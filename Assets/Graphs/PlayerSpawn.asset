@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Name: This
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -232, y: 8}
+  position: {x: -264, y: 24}
   folded: 0
   ports:
     keys:
@@ -93,10 +93,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70e39a2fcb4641278e835e85089c0cec, type: 3}
-  m_Name: Spawn
+  m_Name: Spawn Objects
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -72, y: -200}
+  position: {x: -88, y: -200}
   folded: 0
   ports:
     keys:

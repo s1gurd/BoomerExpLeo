@@ -23,9 +23,9 @@ namespace CoreLogic
         public void SetupUpdateSystems(IEcsSystems systems)
         {
             systems
-                //.Add(new MyFirstSystem())
                 .Add(new TestSystem())
                 .Add(new SpawnSystem())
+                .Add(new CharacterMovementSystem())
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem ())
                 ;
