@@ -116,9 +116,8 @@ MonoBehaviour:
   moveAction: 
   jumpAction: 
   friction: 6
-  gravity: 100
-  jumpForce: 13
-  autoBunnyHop: 0
+  gravity: 40
+  jumpForce: 12
   airControl: 0.3
   groundSettings:
     maxSpeed: 0
@@ -134,7 +133,7 @@ MonoBehaviour:
     deceleration: 0
   characterGameObject:
     value: []
-  angleCompensateMode: 1
+  angleCompensateMode: 2
 --- !u!114 &-4937837506045057476
 MonoBehaviour:
   m_ObjectHideFlags: 0
