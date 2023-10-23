@@ -9,9 +9,11 @@ namespace CoreLogic.Components
     public struct CharacterMovementComponent
     {
         public InputAction moveInput;
+        public InputAction jumpInput;
         public float friction;
         public float gravity;
         public float jumpForce;
+        public bool autoBunnyHop;
         public bool jumpQueued;
         public float airControl;
         public MovementSettings groundSettings;

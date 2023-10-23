@@ -39,14 +39,19 @@ namespace CoreLogic.Systems
                 var transform = World.GetComponent<TransformRef>(entity).Value;
                 var input = movement.moveInput?.ReadValue<Vector2>();
 
-                QueueJump(ref movement, entity);
+                
 
                 if (character.isGrounded)
                 {
+                    QueueJump(ref movement, entity);
                     GroundMove(ref movement, transform, character, input);
                 }
                 else
                 {
+                    if (movement.autoBunnyHop)
+                    {
+                        QueueJump(ref movement, entity);
+                    }
                     AirMove(ref movement, transform, character, input);
                     ApplyGravity(ref movement);
                 }
@@ -62,16 +67,12 @@ namespace CoreLogic.Systems
 
         private void QueueJump(ref CharacterMovementComponent move, int entity)
         {
-            var jumping = World.HasComponent<JumpPressedComponent>(entity);
-            
-            if (jumping) World.RemoveComponent<JumpPressedComponent>(entity);
-
-            if (jumping && !move.jumpQueued)
+            if (move.jumpInput.WasPressedThisFrame())
             {
                 move.jumpQueued = true;
             }
 
-            if (!jumping)
+            if (move.jumpInput.WasReleasedThisFrame())
             {
                 move.jumpQueued = false;
             }
@@ -111,6 +112,11 @@ namespace CoreLogic.Systems
             if (move.airControl > 0)
             {
                 AirControl(ref move,wishDir, wishSpeedTemp, input);
+            }
+
+            if (!move.autoBunnyHop)
+            {
+                move.jumpQueued = false;
             }
         }
 

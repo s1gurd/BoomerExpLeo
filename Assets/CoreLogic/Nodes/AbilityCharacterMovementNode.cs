@@ -26,11 +26,11 @@ namespace CoreLogic.Nodes
         [SerializeField] private float friction = 6;
         [SerializeField] private float gravity = 20;
         [SerializeField] private float jumpForce = 8;
-        [InfoBox("How precise air control is")]
+        [SerializeField] private bool autoBunnyHop = true;
         [SerializeField] private float airControl = 0.3f;
         [Input(ShowBackingValue.Never)]public MovementSettings groundSettings;
         [Input(ShowBackingValue.Never)]public MovementSettings airSettings;
-        [Input(ShowBackingValue.Never)]public MovementSettings strafeSettings;
+        [Input(ShowBackingValue.Never)]public MovementSettings airStrafeSettings;
         
         [Input(ShowBackingValue.Never,
             connectionType = ConnectionType.Override)]
@@ -56,26 +56,20 @@ namespace CoreLogic.Nodes
             if (!jumpAction.IsNullOrEmpty())
             {
                 _jump = inputContext.actions.FindActionMap(inputContext.actionMap).FindAction(jumpAction);
-                _jump.performed += _ =>
-                {
-                    if (!ecsWorld.HasComponent<JumpPressedComponent>(entity))
-                    {
-                        ecsWorld.AddComponent<JumpPressedComponent>(entity);
-                    }
-                };
-                
             }
 
             ecsWorld.AddComponent(entity, new CharacterMovementComponent
             {
                 moveInput = _move,
+                jumpInput = _jump,
                 friction = friction,
                 gravity = gravity,
                 airControl = airControl,
                 jumpForce = jumpForce,
+                autoBunnyHop = autoBunnyHop,
                 groundSettings = groundSettings,
                 airSettings = airSettings,
-                strafeSettings = strafeSettings,
+                strafeSettings = airStrafeSettings,
                 angleCompensation = angleCompensateMode
             });
         }

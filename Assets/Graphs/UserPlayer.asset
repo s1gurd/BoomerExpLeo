@@ -23,7 +23,7 @@ MonoBehaviour:
     - groundSettings
     - jumpAction
     - characterGameObject
-    - strafeSettings
+    - airStrafeSettings
     values:
     - _fieldName: inputContext
       _node: {fileID: -7061075007637913700}
@@ -98,14 +98,11 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: strafeSettings
+    - _fieldName: airStrafeSettings
       _node: {fileID: -7061075007637913700}
       _typeQualifiedName: CoreLogic.Common.DataTypes.MovementSettings, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: settingsOutput
-        node: {fileID: 1719840555449585049}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -118,6 +115,7 @@ MonoBehaviour:
   friction: 6
   gravity: 40
   jumpForce: 12
+  autoBunnyHop: 1
   airControl: 0.3
   groundSettings:
     maxSpeed: 0
@@ -127,7 +125,7 @@ MonoBehaviour:
     maxSpeed: 0
     acceleration: 0
     deceleration: 0
-  strafeSettings:
+  airStrafeSettings:
     maxSpeed: 0
     acceleration: 0
     deceleration: 0
@@ -429,7 +427,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b14e7bc401e94a33b06f09565f075b56, type: 3}
-  m_Name: Strafe Settings
+  m_Name: Movement Settings
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -392, y: 296}
@@ -442,10 +440,7 @@ MonoBehaviour:
       _node: {fileID: 1719840555449585049}
       _typeQualifiedName: CoreLogic.Common.DataTypes.MovementSettings, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: strafeSettings
-        node: {fileID: -7061075007637913700}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
