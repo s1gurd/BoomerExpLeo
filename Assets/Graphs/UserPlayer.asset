@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Character Movement
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -88, y: -24}
+  position: {x: -88, y: -152}
   folded: 0
   ports:
     keys:
@@ -22,7 +22,6 @@ MonoBehaviour:
     - airSettings
     - groundSettings
     - jumpAction
-    - characterGameObject
     - airStrafeSettings
     values:
     - _fieldName: inputContext
@@ -85,24 +84,14 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: characterGameObject
-      _node: {fileID: -7061075007637913700}
-      _typeQualifiedName: CoreLogic.Graph.ListConnection`1[[UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: gameObject
-        node: {fileID: -146650012400414672}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
     - _fieldName: airStrafeSettings
       _node: {fileID: -7061075007637913700}
       _typeQualifiedName: CoreLogic.Common.DataTypes.MovementSettings, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: settingsOutput
+        node: {fileID: 1719840555449585049}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -115,7 +104,7 @@ MonoBehaviour:
   friction: 6
   gravity: 40
   jumpForce: 12
-  autoBunnyHop: 1
+  autoBunnyHop: 0
   airControl: 0.3
   groundSettings:
     maxSpeed: 0
@@ -129,8 +118,6 @@ MonoBehaviour:
     maxSpeed: 0
     acceleration: 0
     deceleration: 0
-  characterGameObject:
-    value: []
   angleCompensateMode: 2
 --- !u!114 &-4937837506045057476
 MonoBehaviour:
@@ -145,7 +132,7 @@ MonoBehaviour:
   m_Name: Init Input Context
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -88, y: -200}
+  position: {x: -88, y: -280}
   folded: 0
   ports:
     keys:
@@ -257,6 +244,9 @@ MonoBehaviour:
       - fieldName: inputContext
         node: {fileID: -4937837506045057476}
         reroutePoints: []
+      - fieldName: inputContext
+        node: {fileID: -1088239985768878097}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -265,7 +255,10 @@ MonoBehaviour:
       _node: {fileID: -1103920811716569396}
       _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: lookActionX
+        node: {fileID: -1088239985768878097}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -292,6 +285,72 @@ MonoBehaviour:
   - Look
   - LookHorizontal
   - Jump
+--- !u!114 &-1088239985768878097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2cffce963445749ec4ec77baa97ad0, type: 3}
+  m_Name: Ability Look
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -88, y: 168}
+  folded: 0
+  ports:
+    keys:
+    - inputContext
+    - lookActionX
+    - lookActionY
+    values:
+    - _fieldName: inputContext
+      _node: {fileID: -1088239985768878097}
+      _typeQualifiedName: CoreLogic.Common.DataTypes.InputContext, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputContext
+        node: {fileID: -1103920811716569396}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: lookActionX
+      _node: {fileID: -1088239985768878097}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: inputActions 2
+        node: {fileID: -1103920811716569396}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: lookActionY
+      _node: {fileID: -1088239985768878097}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  inputContext:
+    actions: {fileID: 0}
+    actionMap: 
+  lookActionX: 
+  lookActionY: 
+  xSensitivity: 2
+  ySensitivity: 2
+  clampVerticalRotation: 0
+  minimumY: -90
+  maximumY: 90
+  smooth: 1
+  smoothTime: 12
 --- !u!114 &-708658109783540850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,38 +389,6 @@ MonoBehaviour:
     maxSpeed: 0
     acceleration: 0
     deceleration: 0
---- !u!114 &-146650012400414672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a8ed810e71422385cc27a37866eb99, type: 3}
-  m_Name: This
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -328, y: 424}
-  folded: 0
-  ports:
-    keys:
-    - gameObject
-    values:
-    - _fieldName: gameObject
-      _node: {fileID: -146650012400414672}
-      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: characterGameObject
-        node: {fileID: -7061075007637913700}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  gameObject: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,8 +408,8 @@ MonoBehaviour:
   - {fileID: -4937837506045057476}
   - {fileID: 314926692645625152}
   - {fileID: 1719840555449585049}
-  - {fileID: -146650012400414672}
   - {fileID: -1103920811716569396}
+  - {fileID: -1088239985768878097}
   gameObject: {fileID: 0}
   actor: {fileID: 0}
 --- !u!114 &314926692645625152
@@ -427,7 +454,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b14e7bc401e94a33b06f09565f075b56, type: 3}
-  m_Name: Movement Settings
+  m_Name: Air Strafe Settings
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -392, y: 296}
@@ -440,7 +467,10 @@ MonoBehaviour:
       _node: {fileID: 1719840555449585049}
       _typeQualifiedName: CoreLogic.Common.DataTypes.MovementSettings, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: airStrafeSettings
+        node: {fileID: -7061075007637913700}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2

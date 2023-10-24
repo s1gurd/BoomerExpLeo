@@ -66,6 +66,8 @@ namespace CoreLogic.Common
 
             var newEntity = world.NewEntity();
             
+            LinkUnityComponents(newEntity);
+            
             var components = GetComponents<IAbility>(); 
             foreach (var component in components)
             {
@@ -97,8 +99,6 @@ namespace CoreLogic.Common
                     }
                 }
             }
-            
-            LinkUnityComponents(newEntity);
 
             return newEntity;
         }

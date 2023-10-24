@@ -24,7 +24,8 @@ namespace CoreLogic
         {
             systems
                 .Add(new CharacterMovementSystem())
-                ;
+                .Add(new LookSystem())
+            ;
         }
 
         public void SetupInjector(IEcsInjector injector)

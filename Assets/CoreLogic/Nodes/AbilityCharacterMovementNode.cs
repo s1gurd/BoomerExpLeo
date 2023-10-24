@@ -31,14 +31,9 @@ namespace CoreLogic.Nodes
         [Input(ShowBackingValue.Never)]public MovementSettings groundSettings;
         [Input(ShowBackingValue.Never)]public MovementSettings airSettings;
         [Input(ShowBackingValue.Never)]public MovementSettings airStrafeSettings;
-        
-        [Input(ShowBackingValue.Never,
-            connectionType = ConnectionType.Override)]
-        public ListConnection<GameObject> characterGameObject;
 
         [SerializeField][LabelWidth(120)]private AngleCompensate angleCompensateMode;
         
-        private CharacterController _character;
         private InputAction _move;
         private InputAction _jump;
 
@@ -46,8 +41,6 @@ namespace CoreLogic.Nodes
         {
             RefreshFields();
 
-            _character = characterGameObject.value.First().GetComponent<CharacterController>();
-            
             if (!moveAction.IsNullOrEmpty())
             {
                 _move = inputContext.actions.FindActionMap(inputContext.actionMap).FindAction(moveAction);

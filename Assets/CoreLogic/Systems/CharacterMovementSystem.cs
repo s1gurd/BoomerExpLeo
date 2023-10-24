@@ -1,4 +1,3 @@
-using System;
 using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Common;
 using CoreLogic.Common.DataTypes;
@@ -6,7 +5,6 @@ using CoreLogic.Common.Utils;
 using CoreLogic.Components;
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace CoreLogic.Systems
 {
@@ -38,9 +36,7 @@ namespace CoreLogic.Systems
                 var character = World.GetComponent<CharacterRef>(entity).Value;
                 var transform = World.GetComponent<TransformRef>(entity).Value;
                 var input = movement.moveInput?.ReadValue<Vector2>();
-
                 
-
                 if (character.isGrounded)
                 {
                     QueueJump(ref movement, entity);
