@@ -2,6 +2,7 @@ using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Common;
 using CoreLogic.Common.Utils;
 using CoreLogic.Components;
+using CoreLogic.Components.Transformation;
 using Leopotam.EcsLite;
 
 namespace CoreLogic.Systems.Transformation

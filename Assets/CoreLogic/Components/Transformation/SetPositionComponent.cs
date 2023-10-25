@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CoreLogic.Components
+namespace CoreLogic.Components.Transformation
 {
     [Serializable]
     public struct SetPositionComponent

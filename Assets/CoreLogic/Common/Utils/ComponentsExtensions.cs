@@ -1,4 +1,5 @@
 using CoreLogic.Components;
+using CoreLogic.Components.Transformation;
 using Leopotam.EcsLite;
 using UnityEngine;
 

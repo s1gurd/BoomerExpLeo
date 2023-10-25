@@ -4,6 +4,7 @@ using System.Linq;
 using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Common.Utils;
 using CoreLogic.Components;
+using CoreLogic.Components.Transformation;
 using CoreLogic.Graph;
 using CoreLogic.Nodes;
 using Sirenix.OdinInspector;
