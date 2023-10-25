@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AleVerDes.LeoEcsLiteZoo;
 using CoreLogic.Common.Utils;
 using CoreLogic.Components;
@@ -44,11 +45,17 @@ namespace CoreLogic.Common
             var output = new List<ComponentNodeGraph>();
             foreach (var graph in sourceGraphs)
             {
-                if (graph.Copy() is ComponentNodeGraph instance)
+                if (graph.nodes.Any(n => n is IInstanceNode))
                 {
+                    if (graph.Copy() is not ComponentNodeGraph instance) continue;
+                    
                     instance.actor = this;
                     instance.gameObject = gameObject;
                     output.Add(instance);
+                }
+                else
+                {
+                    output.Add(graph);
                 }
             }
 
@@ -136,6 +143,7 @@ namespace CoreLogic.Common
                 {
                     Value = rb
                 });
+                ecsWorld.AddComponent(entity,new FixedUpdateTransform());
             }
             
             if (TryGetComponent<Rigidbody2D>(out var rb2d))
@@ -152,6 +160,7 @@ namespace CoreLogic.Common
                 {
                     Value = cc
                 });
+                ecsWorld.AddComponent(entity,new FixedUpdateTransform());
             }
         }
     }

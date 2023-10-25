@@ -51,8 +51,8 @@ namespace CoreLogic.Systems
                     AirMove(ref movement, transform, character, input);
                     ApplyGravity(ref movement);
                 }
-                
-                character.Move(movement.velocity * Time.fixedDeltaTime);
+
+                World.SetTranslation(entity, movement.velocity * Time.fixedDeltaTime);
             }
         }
 

@@ -97,26 +97,26 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   inputContext:
-    actions: {fileID: 0}
-    actionMap: 
-  moveAction: 
-  jumpAction: 
+    actions: {fileID: -944628639613478452, guid: d5ed55f047df943c1907f718553d86d7, type: 3}
+    actionMap: Gameplay
+  moveAction: Move
+  jumpAction: Jump
   friction: 6
   gravity: 40
   jumpForce: 12
-  autoBunnyHop: 0
+  autoBunnyHop: 1
   airControl: 0.3
   groundSettings:
-    maxSpeed: 0
-    acceleration: 0
-    deceleration: 0
+    maxSpeed: 7
+    acceleration: 14
+    deceleration: 10
   airSettings:
-    maxSpeed: 0
-    acceleration: 0
-    deceleration: 0
+    maxSpeed: 7
+    acceleration: 2
+    deceleration: 2
   airStrafeSettings:
-    maxSpeed: 0
-    acceleration: 0
+    maxSpeed: 1
+    acceleration: 50
     deceleration: 0
   angleCompensateMode: 2
 --- !u!114 &-4937837506045057476
@@ -176,8 +176,8 @@ MonoBehaviour:
   inputTrigger: {fileID: 0}
   outputTrigger: {fileID: 0}
   inputContext:
-    actions: {fileID: 0}
-    actionMap: 
+    actions: {fileID: -944628639613478452, guid: d5ed55f047df943c1907f718553d86d7, type: 3}
+    actionMap: Gameplay
 --- !u!114 &-1103920811716569396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,16 +340,16 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   inputContext:
-    actions: {fileID: 0}
-    actionMap: 
-  lookActionX: 
+    actions: {fileID: -944628639613478452, guid: d5ed55f047df943c1907f718553d86d7, type: 3}
+    actionMap: Gameplay
+  lookActionX: LookHorizontal
   lookActionY: 
-  xSensitivity: 2
+  xSensitivity: 3
   ySensitivity: 2
   clampVerticalRotation: 0
   minimumY: -90
   maximumY: 90
-  smooth: 1
+  smooth: 0
   smoothTime: 12
 --- !u!114 &-708658109783540850
 MonoBehaviour:
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af6a5890fe38742a78315fd07d9d1b05, type: 3}
-  m_Name: UserPlayer
+  m_Name: UserPlayerMovement
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 5502724166524789788}

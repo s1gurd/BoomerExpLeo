@@ -34,7 +34,7 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "b08e87d3-bfb9-4b77-bd82-96d258bb2922",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -223,6 +223,17 @@
                     "name": "",
                     "id": "206b659a-9603-4e17-b086-51611acf4d70",
                     "path": "<Keyboard>/space",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e4954d1-263b-4b4e-9385-7337d41f5a3a",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",

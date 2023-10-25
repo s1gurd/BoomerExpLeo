@@ -7,7 +7,7 @@ using XNode;
 namespace CoreLogic.Nodes
 {
     [CreateNodeMenu("This")][NodeWidth(110)]
-    public class ThisNode : ComponentNode
+    public class ThisNode : ComponentNode, IInstanceNode
     {
         [Output][LabelWidth(1)]
         public GameObject gameObject;
@@ -18,7 +18,7 @@ namespace CoreLogic.Nodes
             if (port.fieldName.Equals(nameof(gameObject), StringComparison.Ordinal))
             {
                 _compGraph ??= graph as ComponentNodeGraph;
-            
+                
                 if (_compGraph is not null) 
                     gameObject = _compGraph.actor != null ? _compGraph.actor.gameObject : null;
                 return new ListConnection<GameObject>(gameObject);

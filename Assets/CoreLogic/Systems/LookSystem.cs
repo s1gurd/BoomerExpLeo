@@ -21,15 +21,10 @@ namespace CoreLogic.Systems
         {
             foreach (var entity in _filter)
             {
-                Transform transform;
-                
-                var character = World.GetComponent<CharacterRef>(entity).Value;
-                transform = character is not null ? character.transform : World.GetComponent<TransformRef>(entity).Value;
-                
                 var input = new Vector2();
                 ref var look = ref World.GetComponent<LookComponent>(entity);
                 
-                if (look.lookX is not null)
+                if (look.lookX?.actionMap is not null)
                 {
                     switch (look.lookX.expectedControlType)
                     {
@@ -45,7 +40,7 @@ namespace CoreLogic.Systems
                     }
                 }
                 
-                if (look.lookY is not null)
+                if (look.lookY?.actionMap is not null)
                 {
                     switch (look.lookY.expectedControlType)
                     {
@@ -63,7 +58,10 @@ namespace CoreLogic.Systems
 
                 Look(ref look, input);
 
-                transform.localRotation = look.characterTargetRot;
+                World.SetComponent(entity, new SetRotationComponent
+                {
+                    rotation = look.characterTargetRot
+                });
             }
         }
 

@@ -1,4 +1,6 @@
+using CoreLogic.Components;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace CoreLogic.Common.Utils
 {
@@ -20,7 +22,7 @@ namespace CoreLogic.Common.Utils
             newComp = value;
             return ref newComp;
         }
-        public static ref T AddOrUpdateComponent<T>(this EcsWorld world, int entity, T value = default) where T : struct
+        public static ref T SetComponent<T>(this EcsWorld world, int entity, T value = default) where T : struct
         {
             if (world.HasComponent<T>(entity))
             {
@@ -42,6 +44,40 @@ namespace CoreLogic.Common.Utils
             if (!world.HasComponent<T>(entity)) return;
             
             world.RemoveComponent<T>(entity);
+        }
+        
+        public static ref TranslateComponent SetTranslation(this EcsWorld world, int entity, Vector3 delta)
+        {
+            if (world.HasComponent<TranslateComponent>(entity))
+            {
+                ref var comp = ref world.GetComponent<TranslateComponent>(entity);
+                comp.delta += delta;
+                return ref comp;
+            }
+            else
+            {
+                return ref world.AddComponent(entity,new TranslateComponent
+                {
+                    delta = delta
+                });
+            }
+        }
+        
+        public static ref RotateComponent SetRotationDelta(this EcsWorld world, int entity, Quaternion delta)
+        {
+            if (world.HasComponent<RotateComponent>(entity))
+            {
+                ref var comp = ref world.GetComponent<RotateComponent>(entity);
+                comp.delta *= delta;
+                return ref comp;
+            }
+            else
+            {
+                return ref world.AddComponent(entity,new RotateComponent
+                {
+                    delta = delta
+                });
+            }
         }
 
     }
