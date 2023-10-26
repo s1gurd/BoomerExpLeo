@@ -47,7 +47,7 @@ namespace CoreLogic.Common.Utils
             world.RemoveComponent<T>(entity);
         }
         
-        public static ref TranslateComponent SetTranslation(this EcsWorld world, int entity, Vector3 delta)
+        public static ref TranslateComponent AddTranslation(this EcsWorld world, int entity, Vector3 delta)
         {
             if (world.HasComponent<TranslateComponent>(entity))
             {
@@ -64,7 +64,7 @@ namespace CoreLogic.Common.Utils
             }
         }
         
-        public static ref RotateComponent SetRotationDelta(this EcsWorld world, int entity, Quaternion delta)
+        public static ref RotateComponent AddRotation(this EcsWorld world, int entity, Quaternion delta)
         {
             if (world.HasComponent<RotateComponent>(entity))
             {

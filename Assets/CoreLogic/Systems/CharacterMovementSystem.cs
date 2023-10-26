@@ -52,7 +52,7 @@ namespace CoreLogic.Systems
                     ApplyGravity(ref movement);
                 }
 
-                World.SetTranslation(entity, movement.velocity * Time.fixedDeltaTime);
+                World.AddTranslation(entity, movement.velocity * Time.fixedDeltaTime);
             }
         }
 
